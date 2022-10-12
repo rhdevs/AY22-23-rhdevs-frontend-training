@@ -19,5 +19,6 @@
   "editor.renderWhitespace": "boundary",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "todo-tree.tree.disableCompactFolders": true
 }
