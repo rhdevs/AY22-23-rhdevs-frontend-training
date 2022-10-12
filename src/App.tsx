@@ -18,6 +18,10 @@ const Mission1HomePage = React.lazy(
   () => import(/* webpackChunckName: "Mission1HomePage" */ './pages/Mission1HomePage'),
 )
 const SL_Example = React.lazy(() => import(/* webpackChunckName: "Example" */ './pages/YourShoppingListsHere/Example'))
+const SL_YourNameHere = React.lazy(
+  () => import(/* webpackChunckName: "YourNameHere" */ './pages/YourShoppingListsHere/YourNameHere'),
+)
+const SL_Marcus = React.lazy(() => import(/* webpackChunckName: "Marcus" */ './pages/YourShoppingListsHere/Marcus'))
 // Add your Page here!
 
 function App() {
@@ -30,6 +34,8 @@ function App() {
       <Route path="/" exact component={LandingPage} />
       <Route path={`${PATHS.MISSIONS}/1`} exact component={Mission1HomePage} />
       <Route path={`${PATHS.MISSIONS}/1/Example`} exact component={SL_Example} />
+      <Route path={`${PATHS.MISSIONS}/1/YourNameHere`} exact component={SL_YourNameHere} />
+      <Route path={`${PATHS.MISSIONS}/1/Marcus`} exact component={SL_Marcus} />
       {/* Add your Route here! */}
 
       <Route component={NotFound} />
