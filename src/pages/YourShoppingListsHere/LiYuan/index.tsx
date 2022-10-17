@@ -1,9 +1,6 @@
 import styled from 'styled-components'
-import type { InputRef } from 'antd'
-import type { ColumnType } from 'antd/es/table'
-import { Space, Button, Form, Input, Popconfirm, Table } from 'antd'
-import type { FormInstance } from 'antd/es/form'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import { Button, Input, Table } from 'antd'
+import React, { useState } from 'react'
 
 // Do not edit the other parts of the code!
 
@@ -12,7 +9,7 @@ const ShoppingListDiv = styled.div`
 `
 
 const SL_LiYuan = () => {
-  const data = [
+  const originData = [
     {
       key: 0,
       name: 'Eggs',
@@ -23,7 +20,7 @@ const SL_LiYuan = () => {
     },
   ]
 
-  const [Data, setData] = useState(data)
+  const [data, setData] = useState(originData)
   const [value, setValue] = useState('')
 
   const columns = [
@@ -38,7 +35,7 @@ const SL_LiYuan = () => {
       width: 400,
       render: (record: any) => {
         return (
-          <Button onClick={() => Delete(record)} type="primary" style={{ marginBottom: 16 }}>
+          <Button onClick={() => deleteValue(record)} type="primary" style={{ marginBottom: 16 }}>
             Delete
           </Button>
         )
@@ -47,23 +44,25 @@ const SL_LiYuan = () => {
   ]
   const [count, setCount] = useState(2)
 
-  const Delete = (record: any) => {
+  const deleteValue = (record: any) => {
     setData((pre) => {
       return pre.filter((person) => person.key != record.key)
     })
   }
 
-  const Add = () => {
-    const newData = {
-      key: count,
-      name: value,
+  const addValue = () => {
+    if (value.trim().length > 0) {
+      const newData = {
+        key: count,
+        name: value,
+      }
+      setData((pre) => {
+        return [...data, newData]
+      })
+      setCount((count) => {
+        return count + 1
+      })
     }
-    setData((pre) => {
-      return [...Data, newData]
-    })
-    setCount((count) => {
-      return count + 1
-    })
   }
 
   return (
@@ -76,11 +75,11 @@ const SL_LiYuan = () => {
           onChange={(e) => setValue(e.target.value)}
           style={{ marginBottom: 16, width: 500 }}
         />
-        <Button size="large" onClick={Add} type="primary" style={{ marginBottom: 16, float: 'right' }}>
+        <Button size="large" onClick={addValue} type="primary" style={{ marginBottom: 16, float: 'right' }}>
           Add Item
         </Button>
 
-        <Table dataSource={Data} columns={columns} />
+        <Table dataSource={data} columns={columns} />
       </div>
     </ShoppingListDiv>
   )
