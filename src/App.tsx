@@ -17,8 +17,11 @@ const NotFound = React.lazy(() => import(/* webpackChunckName: "NotFound" */ './
 const Mission1HomePage = React.lazy(
   () => import(/* webpackChunckName: "Mission1HomePage" */ './pages/Mission1HomePage'),
 )
-const SL_SongYang = React.lazy(() => import(/* webpackChunckName: "Example" */ './pages/YourShoppingListsHere/Example'))
+const SL_Example = React.lazy(() => import(/* webpackChunckName: "Example" */ './pages/YourShoppingListsHere/Example'))
 // Add your Page here!
+const SL_SongYang = React.lazy(
+  () => import(/* webpackChunckName: "Example" */ './pages/YourShoppingListsHere/SongYang'),
+)
 
 function App() {
   useEffect(() => {
@@ -29,9 +32,9 @@ function App() {
     <Switch>
       <Route path="/" exact component={LandingPage} />
       <Route path={`${PATHS.MISSIONS}/1`} exact component={Mission1HomePage} />
-      <Route path={`${PATHS.MISSIONS}/1/SongYang`} exact component={SL_SongYang} />
+      <Route path={`${PATHS.MISSIONS}/1/Example`} exact component={SL_Example} />
       {/* Add your Route here! */}
-
+      <Route path={`${PATHS.MISSIONS}/1/SongYang`} exact component={SL_SongYang} />
       <Route component={NotFound} />
       <Redirect to="/" />
     </Switch>
