@@ -19,8 +19,10 @@ const SL_SongYang: React.FC = () => {
   const addItemHandler = () => {
     setTable((prevTable) => {
       if (itemInputRef.current !== null) {
-        setNextId(nextId + 1)
-        return prevTable.concat({ key: nextId.toString(), name: itemInputRef.current.value })
+        if (itemInputRef.current.value.trim().length !== 0) {
+          setNextId(nextId + 1)
+          return prevTable.concat({ key: nextId.toString(), name: itemInputRef.current.value })
+        }
       }
       return prevTable
     })
@@ -39,13 +41,8 @@ const SL_SongYang: React.FC = () => {
         rowKey={(record) => record.key}
         dataSource={table}
         columns={[
-          // {
-          //   title: 'Quantity',
-          //   dataIndex: 'quantity',
-          //   key: 'quantity',
-          // },
           {
-            title: 'Item name',
+            title: 'Item Name',
             dataIndex: 'name',
             key: 'name',
           },
@@ -62,12 +59,10 @@ const SL_SongYang: React.FC = () => {
           },
         ]}
       />
-      {/* <input style={{ width: '30%' }} placeholder="Qty" /> */}
       <input
-        //style={{ width: '30%' }}
+        style={{ width: '50%' }}
         autoComplete="off"
         required
-        id="name"
         type="text"
         placeholder="Item Name"
         ref={itemInputRef}
