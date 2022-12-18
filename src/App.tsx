@@ -26,6 +26,9 @@ const SL_Example_redux = React.lazy(
   () => import(/* webpackChunckName: "Example_redux" */ './pages/YourShoppingListsHere/Example_redux'),
 )
 // Add your Page here!
+const SL_SongYang = React.lazy(
+  () => import(/* webpackChunckName: "Example" */ './pages/YourShoppingListsHere/SongYang'),
+)
 
 function App() {
   useEffect(() => {
@@ -40,7 +43,7 @@ function App() {
       <Route path={`${PATHS.MISSIONS}/1/Example`} exact component={SL_Example} />
       <Route path={`${PATHS.MISSIONS}/1/Example_redux`} exact component={SL_Example_redux} />
       {/* Add your Route here! */}
-
+      <Route path={`${PATHS.MISSIONS}/1/SongYang`} exact component={SL_SongYang} />
       <Route component={NotFound} />
       <Redirect to="/" />
     </Switch>
